@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, results=FALSE}
 library(knapsack)
 ```
 ## The knapsack problem
@@ -44,6 +44,8 @@ This is done with the greedy_knapsack() function.
 # greedy_knapsack(x = knapsack_objects[1:800,], W = 3500)
 # greedy_knapsack(x = knapsack_objects[1:1200,], W = 2000)
 ```
+This algorithm is substantially faster to run, compared to the brute force approach. For the authors, testing the algorithm with one million knapsack objects took only about a second.
 
+## Profile your code and optimize your code
+In the creating of the knapsack package, we the creators have done our best to optimize the code. We have used package profvis to identify bottlenecks and done our best to remove them. However we in no way claim to have written the optimal code, even though we have done our best to get there. This means that performance gains can still be reached by working more on the code. By getting the code more optimized, more object could be evaluated in less time when searching for the optimal knapsack. Getting the code even more optimized could mean that the time presented for evaluating the algorithm in the brute force method could be decreased, making the function useful for bigger sets of knapsack objects.
 
-Question How much time does it take to run the algorithm for n = 1000000 objects?
