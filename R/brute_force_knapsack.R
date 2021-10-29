@@ -25,12 +25,12 @@ brute_force_knapsack <- function(x, W){
   possible_combinations <- data.frame("weight" = NA, "value" = NA)
   for (i in 1:(2^(nrow(x)))){
     possible_combinations[i, "weight"] <-
-      sum(knapsack_objects[which(as.numeric(intToBits(i)[1:nrow(x)]) == 1), 1])
+      sum(knapsack_objects[which(as.numeric(intToBits(i)) == 1), 1])
     possible_combinations[i, "value"] <-
-      sum(knapsack_objects[which(as.numeric(intToBits(i)[1:nrow(x)]) == 1), 2])
+      sum(knapsack_objects[which(as.numeric(intToBits(i)) == 1), 2])
   }
   output <- possible_combinations %>% filter(weight <= W) %>% slice_max(value, n = 1)
   elements <- which(as.numeric(intToBits(which(
-    possible_combinations[ , "value"] == output[1, "value"]))[1:nrow(x)]) == 1)
+    possible_combinations[ , "value"] == output[1, "value"]))) == 1)
   return(list(value = output[ , "value"], elements = elements))
 }
